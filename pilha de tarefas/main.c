@@ -44,7 +44,6 @@ Tarefa* topoDaPilha(Pilha* pilha){
 
 Tarefa* criarTarefa(char* string){
     Tarefa* tarefa = (Tarefa *) malloc(sizeof(Pilha));
-    tarefa->capacidade = 255;
     tarefa->pString = string;
 }
 
