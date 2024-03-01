@@ -22,7 +22,7 @@ typedef struct Pilha {
     int topo;
     int capacidade;
     int *pElemento;
-} Pilha
+} Pilha;
 
 Pilha *criarPilha(int capacidade){
     Pilha *novaPilha = (Pilha *) malloc(sizeof(Pilha));
@@ -34,8 +34,24 @@ Pilha *criarPilha(int capacidade){
     return novaPilha;
 }
 
+int pilhaVazia(Pilha *pilha){
+    return (pilha->topo == -1) ? 1 : 0;
+}
+
+void empilhar(Pilha *pilha, int valor){
+    p->topo++;
+    p->pElemento[p->topo] = valor;
+}
+
+int *desempilhar(Pilha *pilha){
+    int *valor = p->pElemento+p->topo;
+    p->topo--;
+    return valor;
+}
+
 int main(){
-    printf("Hello World");
+    Pilha *p1 = criarPilha(5);
+    Pilha *p2 = criarPilha(5);
 
     return 0;
 }
