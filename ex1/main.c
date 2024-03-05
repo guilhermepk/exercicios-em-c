@@ -17,6 +17,8 @@ desenvolva um programa que inclua as seguintes funcionalidades:
 */
 
 #include <stdio.h>
+#include <locale.h>
+#include <stdlib.h>
 
 typedef struct Pilha {
     int topo;
@@ -39,19 +41,55 @@ int pilhaVazia(Pilha *pilha){
 }
 
 void empilhar(Pilha *pilha, int valor){
-    p->topo++;
-    p->pElemento[p->topo] = valor;
+    pilha->topo++;
+    pilha->pElemento[pilha->topo] = valor;
 }
 
 int *desempilhar(Pilha *pilha){
-    int *valor = p->pElemento+p->topo;
-    p->topo--;
-    return valor;
+    if(pilhaVazia(pilha)){
+        return NULL;
+    }else{
+        int *valor = pilha->pElemento+pilha->topo;
+        pilha->topo--;
+        return valor;
+    }
+}
+
+int pilhasIdenticas(Pilha *p1, Pilha *p2){
+    int p1Vazia = pilhaVazia(p1);
+    int p2Vazia = pilhaVazia(p2);
+
+    if(
+        (p1->capacidade != p2->capacidade)
+        ||
+        (p1->topo != p2->topo)
+        ||
+        (p1Vazia != p2Vazia)
+    ){
+        return 0;
+    }else if(p1Vazia == 1 && p2Vazia == 1){
+        return 1;
+    }else{
+        for(int x = 0; x < p1->capacidade; x++){
+            if( p1->pElemento[p1->topo] != p2->pElemento[p2->topo] ){
+                return 0;
+            }
+        }
+    }
+
+    return 1;
 }
 
 int main(){
+    setlocale(LC_ALL,"Portuguese");
+
     Pilha *p1 = criarPilha(5);
     Pilha *p2 = criarPilha(5);
+
+    empilhar(p1, 1);
+    empilhar(p2, 2);
+
+    pilhasIdenticas(p1, p2) ? printf("Identicas") : printf("Diferentes");
 
     return 0;
 }
