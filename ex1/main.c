@@ -80,16 +80,40 @@ int pilhasIdenticas(Pilha *p1, Pilha *p2){
     return 1;
 }
 
+Pilha *maiorPilha(Pilha *p1, Pilha *p2){
+    if(p1->topo == p2->topo){
+        return NULL;
+    }else{
+        if(p1->topo > p2->topo){
+            return p1;
+        }else{
+            return p2;
+        }
+    }
+}
+
 int main(){
     setlocale(LC_ALL,"Portuguese");
+    system("cls");
 
     Pilha *p1 = criarPilha(5);
     Pilha *p2 = criarPilha(5);
 
     empilhar(p1, 1);
+
+    empilhar(p2, 1);
     empilhar(p2, 2);
 
-    pilhasIdenticas(p1, p2) ? printf("Identicas") : printf("Diferentes");
+    if(pilhasIdenticas(p1, p2)){
+        printf("Identicasn\n");
+    }else{
+        Pilha *maior = maiorPilha(p1, p2);
+        if(maior == NULL){
+            printf("Nao ha maior pilha\n");
+        }else{
+            (maior == p1) ? printf("P1 eh a maior pilha") : printf("P2 eh a maior pilha");
+        }
+    }
 
     return 0;
 }
