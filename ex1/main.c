@@ -7,15 +7,15 @@ desenvolva um programa que inclua as seguintes funcionalidades:
 
 - [x] Se diferirem, identifique qual das duas pilhas possui maior quantidade de elementos.
 
-- [ ] Crie uma função que determine e retorne o valor
+- [x] Crie uma função que determine e retorne o valor
     - [x] máximo
     - [x] mínimo
-    - [ ] média 
+    - [x] média 
     dos números contidos em uma determinada pilha.
 
 - [ ] Desenvolva uma função que permita mover elementos da pilha P1 para a pilha P2 (funcionalidade de cópia).
 
-- [ ] Elabore uma função que calcule e retorne a quantidade de números ímpares em uma pilha específica.
+- [x] Elabore uma função que calcule e retorne a quantidade de números ímpares em uma pilha específica.
 
 - [ ] Projete uma função que identifique e conte quantos elementos de uma pilha têm valores pares.
 */
@@ -96,19 +96,6 @@ Pilha *maiorPilha(Pilha *p1, Pilha *p2){
     }
 }
 
-void imprimirIdenticasOuMaior(Pilha *p1, Pilha *p2){
-    if(pilhasIdenticas(p1, p2)){
-        printf("Identicas\n");
-    }else{
-        Pilha *maior = maiorPilha(p1, p2);
-        if(maior == NULL){
-            printf("Nao ha maior pilha\n");
-        }else{
-            (maior == p1) ? printf("P1 eh a maior pilha") : printf("P2 eh a maior pilha");
-        }
-    }
-}
-
 int maiorValorDaPilha(Pilha *pilha){
     int max = pilha->pElemento[pilha->topo];
 
@@ -142,10 +129,31 @@ float mediaDosValoresDaPilha(Pilha *pilha){
     }
 
     float media = ((float)total) / ((float)quantidade);
+    return media;
+}
 
-    printf("\n%d / %d = %f", total, quantidade,  media);
+int impares(Pilha* pilha){
+    int contadorImpar = 0;
 
-    return (total / quantidade);
+    for(int i = 0; i <= pilha->topo; i++) {
+        if(pilha->pElemento[i] % 2 != 0) {
+            contadorImpar++;
+        }
+    }
+
+    return contadorImpar;
+}
+
+int pares(Pilha *pilha){
+    int contadorPar = 0;
+
+    for(int x = 0; x < pilha->topo; x++){
+        if(pilha->pElemento[x] % 2 == 0){
+            contadorPar++;
+        }
+    }
+
+    return contadorPar;
 }
 
 int main(){
@@ -157,14 +165,27 @@ int main(){
 
     empilhar(p1, 1);
 
-    empilhar(p2, 10);
     empilhar(p2, 5);
+    empilhar(p2, 5);
+    empilhar(p2, 7);
+    empilhar(p2, 8);
+    empilhar(p2, 9);
 
-    imprimirIdenticasOuMaior(p1, p2);
+    if(pilhasIdenticas(p1, p2)){
+        printf("\nAs pilhas são identicas\n");
+    }else{
+        Pilha *maior = maiorPilha(p1, p2);
+        if(maior == NULL){
+            printf("Nao ha maior pilha\n");
+        }else{
+            (maior == p1) ? printf("P1 eh a maior pilha") : printf("P2 eh a maior pilha");
+            printf("\n%d eh o maior valor da pilha", maiorValorDaPilha(maior));
+            printf("\n%d eh o menor valor da pilha", menorValorDaPilha(maior));
+            printf("\n%.2f eh a media dos valores da pilha", mediaDosValoresDaPilha(maior));
 
-    printf("\n%d eh o maior valor da pilha p2", maiorValorDaPilha(p2));
-    printf("\n%d eh o menor valor da pilha p2", menorValorDaPilha(p2));
-    printf("\n%.2f eh a media dos valores da pilha p2", mediaDosValoresDaPilha(p2));
+            printf("\nA pilha tem %d pares e %d impares", pares(maior), impares(maior));
+        }
+    }
 
     return 0;
 }
