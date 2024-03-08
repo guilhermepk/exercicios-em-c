@@ -8,9 +8,9 @@ desenvolva um programa que inclua as seguintes funcionalidades:
 - [x] Se diferirem, identifique qual das duas pilhas possui maior quantidade de elementos.
 
 - [ ] Crie uma função que determine e retorne o valor
-    - [x] máximo,
+    - [x] máximo
     - [x] mínimo
-    - [ ] e a média 
+    - [ ] média 
     dos números contidos em uma determinada pilha.
 
 - [ ] Desenvolva uma função que permita mover elementos da pilha P1 para a pilha P2 (funcionalidade de cópia).
@@ -133,6 +133,21 @@ int menorValorDaPilha(Pilha *pilha){
     return min;
 }
 
+float mediaDosValoresDaPilha(Pilha *pilha){
+    int quantidade = pilha->topo+1;
+    int total;
+
+    for(int x = 0; x < quantidade; x++){
+        total += pilha->pElemento[x];
+    }
+
+    float media = ((float)total) / ((float)quantidade);
+
+    printf("\n%d / %d = %f", total, quantidade,  media);
+
+    return (total / quantidade);
+}
+
 int main(){
     setlocale(LC_ALL,"Portuguese");
     system("cls");
@@ -142,14 +157,14 @@ int main(){
 
     empilhar(p1, 1);
 
-    empilhar(p2, 30);
-    empilhar(p2, 99);
-    empilhar(p2, 7);
+    empilhar(p2, 10);
+    empilhar(p2, 5);
 
     imprimirIdenticasOuMaior(p1, p2);
 
     printf("\n%d eh o maior valor da pilha p2", maiorValorDaPilha(p2));
     printf("\n%d eh o menor valor da pilha p2", menorValorDaPilha(p2));
+    printf("\n%.2f eh a media dos valores da pilha p2", mediaDosValoresDaPilha(p2));
 
     return 0;
 }
