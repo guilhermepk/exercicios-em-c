@@ -30,10 +30,19 @@ Lista *criarLista(){
     return nova;
 }
 
+Aluno *criarAluno(){
+    Aluno *novo = (Aluno*) malloc(sizeof(Aluno));
+    if(!novo) return NULL;
+    novo->proximo = NULL;
+    novo->anterior = NULL;
+    return novo;
+}
+
 int main(){
     system("cls");
 
     Lista *lista = criarLista();
+    Aluno *a1 = criarAluno();
 
     return 0;
 }
