@@ -17,6 +17,11 @@ typedef struct Aluno {
     struct Aluno *anterior;
 } Aluno;
 
+typedef struct Lista {
+    Aluno *inicio;
+    Aluno *fim;
+} Lista;
+
 int main(){
     system("cls");
     return 0;
