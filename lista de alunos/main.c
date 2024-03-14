@@ -22,7 +22,18 @@ typedef struct Lista {
     Aluno *fim;
 } Lista;
 
+Lista *criarLista(){
+    Lista *nova = (Lista*) malloc(sizeof(Lista));
+    if (!nova) return NULL;
+    nova->inicio = NULL;
+    nova->fim = NULL;
+    return nova;
+}
+
 int main(){
     system("cls");
+
+    Lista *lista = criarLista();
+
     return 0;
 }
