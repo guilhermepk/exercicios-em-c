@@ -41,6 +41,10 @@ Fila *criarFila(){
     return nova;
 }
 
+int filaVazia(Fila *fila){
+    return (fila->inicio == NULL);
+}
+
 void inserirPessoaNaFila(Pessoa *pessoa, Fila *fila){
     /*
     1 - Verificar se a fila ta vazia
