@@ -1,3 +1,11 @@
+/*
+ToDo:
+- [ ] Mudar de lista de alunos pra uma lista de numeros inteiros
+- [ ] Criar uma função de adicionar por ordenação crescente
+- [ ] Criar uma função que ordene uma lista ja criada de forma crescente
+- [ ] Fazer o mesmo só que descresente
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
